@@ -74,6 +74,20 @@ def test_commonmark_extras(line, title, input, expected):
 
 @pytest.mark.parametrize(
     "line,title,input,expected",
+    read_fixture_file(FIXTURE_PATH.joinpath("containers.md")),
+)
+def test_containers(line, title, input, expected):
+    md = MarkdownIt("commonmark").enable(["container", "attr_span"])
+    text = md.render(input)
+    try:
+        assert text.rstrip() == expected.rstrip()
+    except AssertionError:
+        print(text)
+        raise
+
+
+@pytest.mark.parametrize(
+    "line,title,input,expected",
     read_fixture_file(FIXTURE_PATH.joinpath("normalize.md")),
 )
 def test_normalize_url(line, title, input, expected):

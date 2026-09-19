@@ -31,6 +31,11 @@ _rules: list[tuple[str, RuleFuncBlockType, list[str]]] = [
     ("code", rules_block.code, []),
     ("fence", rules_block.fence, ["paragraph", "reference", "blockquote", "list"]),
     (
+        "container",
+        rules_block.container,
+        ["paragraph", "reference", "blockquote", "list"],
+    ),
+    (
         "blockquote",
         rules_block.blockquote,
         ["paragraph", "reference", "blockquote", "list"],

@@ -72,6 +72,7 @@ _rules: list[tuple[str, RuleFuncInlineType]] = [
     ("backticks", rules_inline.backtick),
     ("strikethrough", rules_inline.strikethrough.tokenize),
     ("emphasis", rules_inline.emphasis.tokenize),
+    ("attr_span", rules_inline.attr_span),
     ("link", rules_inline.link),
     ("image", rules_inline.image),
     ("autolink", rules_inline.autolink),

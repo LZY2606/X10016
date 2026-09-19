@@ -2,6 +2,7 @@ __all__ = (
     "StateBlock",
     "blockquote",
     "code",
+    "container",
     "fence",
     "heading",
     "hr",
@@ -16,6 +17,7 @@ __all__ = (
 
 from .blockquote import blockquote
 from .code import code
+from .container import container
 from .fence import fence, make_fence_rule
 from .heading import heading
 from .hr import hr
