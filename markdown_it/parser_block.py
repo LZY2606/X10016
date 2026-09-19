@@ -31,6 +31,11 @@ _rules: list[tuple[str, RuleFuncBlockType, list[str]]] = [
     ("code", rules_block.code, []),
     ("fence", rules_block.fence, ["paragraph", "reference", "blockquote", "list"]),
     (
+        "container",
+        rules_block.container,
+        ["paragraph", "reference", "blockquote", "list"],
+    ),
+    (
         "blockquote",
         rules_block.blockquote,
         ["paragraph", "reference", "blockquote", "list"],
@@ -56,6 +61,9 @@ class ParserBlock:
         self.ruler = Ruler[RuleFuncBlockType]()
         for name, rule, alt in _rules:
             self.ruler.push(name, rule, {"alt": alt})
+        # Optional rules, disabled unless explicitly enabled
+        # (presets with explicit rule lists keep them disabled as well)
+        self.ruler.disable(["container"])
 
     def tokenize(self, state: StateBlock, startLine: int, endLine: int) -> None:
         """Generate tokens for input range."""

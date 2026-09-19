@@ -1,5 +1,6 @@
 __all__ = (
     "StateInline",
+    "attr_span",
     "autolink",
     "backtick",
     "emphasis",
@@ -16,6 +17,7 @@ __all__ = (
     "text",
 )
 from . import emphasis, strikethrough
+from .attr_span import attr_span
 from .autolink import autolink
 from .backticks import backtick
 from .balance_pairs import link_pairs

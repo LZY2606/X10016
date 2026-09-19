@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+* ✨ Add `container` block rule and `attr_span` inline rule, both disabled by default and toggled by name with `md.enable(...)` / `md.disable(...)`. The `container` rule parses `:::name {#id .class key=value}` fences (3+ colons, nestable, auto-closed by the end of the parent block) into `container_open` / `container_close` token pairs (`tag` `div`, `markup` set to the opening colon run, raw `info`, `meta["name"]`, and `attrs` with a leading `container` / `container-<name>` class); the container body is parsed as regular block content. The `attr_span` rule parses `[text]{#id .class key=value}` into `span_open` / `span_close` tokens (`tag` `span`) with recursively parsed inline content, and runs before the `link` rule. Both share a new attribute block parser in `markdown_it/helpers/parse_attrs.py`.
 * ✨ Add `--enable-tables` to the CLI for file, standard input and interactive parsing in [#422](https://github.com/executablebooks/markdown-it-py/pull/422)
 * 🐛 Fix CLI interactive mode joining input lines with an extra newline, which split every line into its own paragraph and broke hard line breaks, in [#172](https://github.com/executablebooks/markdown-it-py/issues/172)
 * 🐛 Fix trimming and splitting with the Python whitespace set instead of the CommonMark one, which dropped U+001C–U+001F and U+0085 from paragraphs, headings, table cells and fence info strings and let distinct reference labels resolve each other, in [#418](https://github.com/executablebooks/markdown-it-py/pull/418), thanks to [@Nexory](https://github.com/Nexory)

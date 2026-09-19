@@ -72,6 +72,7 @@ _rules: list[tuple[str, RuleFuncInlineType]] = [
     ("backticks", rules_inline.backtick),
     ("strikethrough", rules_inline.strikethrough.tokenize),
     ("emphasis", rules_inline.emphasis.tokenize),
+    ("attr_span", rules_inline.attr_span),
     ("link", rules_inline.link),
     ("image", rules_inline.image),
     ("autolink", rules_inline.autolink),
@@ -100,6 +101,9 @@ class ParserInline:
         self.ruler = Ruler[RuleFuncInlineType]()
         for name, rule in _rules:
             self.ruler.push(name, rule)
+        # Optional rules, disabled unless explicitly enabled
+        # (presets with explicit rule lists keep them disabled as well)
+        self.ruler.disable(["attr_span"])
         # Second ruler used for post-processing (e.g. in emphasis-like rules)
         self.ruler2 = Ruler[RuleFuncInline2Type]()
         for name, rule2 in _rules2:
